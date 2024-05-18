@@ -205,8 +205,9 @@ namespace smIRCL.Core
                     _remoteTx = null;
                     _remoteStream = null;
                     _remote = null;
+                    Thread.Sleep(Config.ReconnectAttemptWait * 1000);
                 }
-            } while (!IsConnected && _reconnectAttempts >= Config.ReconnectAttempts);
+            } while (!IsConnected && _reconnectAttempts <= Config.ReconnectAttempts);
 
             if (_reconnectAttempts >= Config.ReconnectAttempts)
             {
