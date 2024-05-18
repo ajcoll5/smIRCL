@@ -77,6 +77,11 @@ namespace smIRCL.Config
         public int ReconnectAttempts { get; set; } = 3;
 
         /// <summary>
+        /// The time to wait between connection attempts, in seconds
+        /// </summary>
+        public int ReconnectAttemptWait { get; set; } = 20;
+
+        /// <summary>
         /// Whether to connect immediately during IrcClient instantiation
         /// </summary>
         public bool ConnectOnInstantiation { get; set; } = false;
@@ -171,6 +176,12 @@ namespace smIRCL.Config
             if (ReconnectAttempts < 0)
             {
                 if (throwOnValidationError) throw new Exception($"The parameter '{nameof(ReconnectAttempts)}' is less than 0");
+                isValid = false;
+            }
+
+            if (ReconnectAttemptWait < 0)
+            {
+                if (throwOnValidationError) throw new Exception($"The parameter '{nameof(ReconnectAttemptWait)}' is less than 0");
                 isValid = false;
             }
 
